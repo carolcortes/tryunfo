@@ -3,6 +3,12 @@ import '../styles/Form.css';
 import PropTypes from 'prop-types';
 
 class Form extends React.Component {
+  // onSaveButtonClick = (event) => {
+  //   event.preventDefault();
+  //   const { add } = this.props;
+  //   add(this.state);
+  // }
+
   render() {
     const {
       cardName,
@@ -18,91 +24,101 @@ class Form extends React.Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+
     return (
       <div className="form">
         <h1 className="form-title">Adicionar nova carta</h1>
-        <form>
-          <label htmlFor="name">
+        <form onSubmit={ onSaveButtonClick }>
+          <label htmlFor="cardName">
             Nome
             <input
               type="text"
               data-testid="name-input"
               value={ cardName }
               onChange={ onInputChange }
+              name="cardName"
+              id="cardName"
             />
           </label>
-          <label htmlFor="description">
+          <label htmlFor="cardDescription">
             Descrição
             <textarea
-              name="description"
+              name="cardDescription"
               cols="30"
               rows="10"
               data-testid="description-input"
               value={ cardDescription }
               onChange={ onInputChange }
+              id="cardDescription"
             />
           </label>
-          <label htmlFor="attr1">
+          <label htmlFor="cardAttr1">
             Attr01
             <input
               type="number"
-              name="attr1"
+              name="cardAttr1"
               data-testid="attr1-input"
               value={ cardAttr1 }
               onChange={ onInputChange }
+              id="cardAttr1"
             />
           </label>
-          <label htmlFor="attr2">
+          <label htmlFor="cardAttr2">
             Attr02
             <input
               type="number"
-              name="attr2"
+              name="cardAttr2"
               data-testid="attr2-input"
               value={ cardAttr2 }
               onChange={ onInputChange }
+              id="cardAttr2"
             />
           </label>
-          <label htmlFor="attr3">
+          <label htmlFor="cardAttr3">
             Attr03
             <input
               type="number"
-              name="attr3"
+              name="cardAttr3"
               data-testid="attr3-input"
               value={ cardAttr3 }
               onChange={ onInputChange }
+              id="cardAttr3"
             />
           </label>
-          <label htmlFor="imagem">
+          <label htmlFor="cardImage">
             Imagem
             <input
               type="text"
-              name="imagem"
+              name="cardImage"
               data-testid="image-input"
               value={ cardImage }
               onChange={ onInputChange }
+              id="cardImage"
             />
           </label>
-          <label htmlFor="rare">
+          <label htmlFor="cardRare">
             Raridade
             <select
-              name="rare"
+              name="cardRare"
               data-testid="rare-input"
               value={ cardRare }
               onChange={ onInputChange }
+              id="cardRare"
             >
               <option value="normal">Normal</option>
               <option value="raro">Raro</option>
               <option value="muito raro">Muito Raro</option>
             </select>
           </label>
-          <label htmlFor="trunfo">
+          <label htmlFor="cardTrunfo">
             Super Trybe Trunfo
             <input
               type="checkbox"
-              name="trunfo"
+              name="cardTrunfo"
               data-testid="trunfo-input"
               checked={ cardTrunfo }
               onChange={ onInputChange }
+              id="cardTrunfo"
             />
           </label>
           <button
