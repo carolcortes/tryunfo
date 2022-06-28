@@ -1,0 +1,14 @@
+.form-title {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+form button {
+  width: fit-content;
+}
