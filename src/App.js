@@ -6,12 +6,12 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      // cards: [],
+      cards: [],
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
@@ -50,11 +50,20 @@ class App extends React.Component {
     }));
   }
 
-  // addNewCard = (card) => {
-  //   this.setState((prevState) => ({
-  //     cards: [card, ...prevState.cards],
-  //   }));
-  // }
+  onSaveButtonClick = () => {
+    const card = this.state;
+    this.setState((prevState) => ({
+      cards: [card, ...prevState.cards],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: '',
+      isSAveButtonDisabled: true,
+    }));
+  }
 
   render() {
     const {
@@ -83,6 +92,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ isSAveButtonDisabled }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
