@@ -71,10 +71,10 @@ class App extends React.Component {
     }));
   }
 
-  removeCard = (event) => {
-    // event.target.parentNode.remove();
-    // console.log(this.state.cards.filter((card) => event));
-  }
+  // removeCard = (event) => {
+  //   // event.target.parentNode.remove();
+  //   // console.log(this.state.cards.filter((card) => event));
+  // }
 
   render() {
     const {
