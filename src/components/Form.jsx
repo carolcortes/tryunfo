@@ -3,12 +3,6 @@ import '../styles/Form.css';
 import PropTypes from 'prop-types';
 
 class Form extends React.Component {
-  // onSaveButtonClick = (event) => {
-  //   event.preventDefault();
-  //   const { add } = this.props;
-  //   add(this.state);
-  // }
-
   render() {
     const {
       cardName,
@@ -19,7 +13,7 @@ class Form extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -116,17 +110,19 @@ class Form extends React.Component {
               <option value="muito raro">Muito Raro</option>
             </select>
           </label>
-          <label htmlFor="cardTrunfo">
-            Super Trybe Trunfo
-            <input
-              type="checkbox"
-              name="cardTrunfo"
-              data-testid="trunfo-input"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-              id="cardTrunfo"
-            />
-          </label>
+          { hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho</p>
+            : (
+              <label htmlFor="cardTrunfo">
+                Super Trybe Trunfo
+                <input
+                  type="checkbox"
+                  name="cardTrunfo"
+                  data-testid="trunfo-input"
+                  checked={ cardTrunfo }
+                  onChange={ onInputChange }
+                  id="cardTrunfo"
+                />
+              </label>)}
           <button
             type="button"
             data-testid="save-button"
