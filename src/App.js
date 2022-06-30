@@ -67,7 +67,13 @@ class App extends React.Component {
       isSAveButtonDisabled: true,
     }), () => this.setState({
       hasTrunfo: !!cardTrunfo,
+      cardTrunfo: false,
     }));
+  }
+
+  removeCard = (event) => {
+    // event.target.parentNode.remove();
+    // console.log(this.state.cards.filter((card) => event));
   }
 
   render() {
@@ -114,17 +120,26 @@ class App extends React.Component {
           />
         </div>
         <p>Todas as cartas</p>
-        { cards.map((card) => (<Card
-          key={ card.cardName }
-          cardName={ card.cardName }
-          cardDescription={ card.cardDescription }
-          cardAttr1={ card.cardAttr1 }
-          cardAttr2={ card.cardAttr2 }
-          cardAttr3={ card.cardAttr3 }
-          cardImage={ card.cardAttr3 }
-          cardRare={ card.cardRare }
-          cardTrunfo={ card.cardTrunfo }
-        />)) }
+        { cards.map((card) => (
+          <div key={ card.cardName }>
+            <Card
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+            />
+            <button
+              type="button"
+              data-testid="delete-button"
+              onClick={ this.removeCard }
+            >
+              Excluir
+            </button>
+          </div>)) }
       </div>
     );
   }
