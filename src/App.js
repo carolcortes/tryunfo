@@ -30,12 +30,7 @@ class App extends React.Component {
     const value = type === 'checkbox' ? checked : target.value;
     this.setState({
       [name]: value === 'todas' ? '' : value,
-    }, () => {
-      this.setState({
-        searchName: '',
-        searchRare: '',
-        disableSearch: checked,
-      });
+      disableSearch: !!checked,
     });
   }
 
