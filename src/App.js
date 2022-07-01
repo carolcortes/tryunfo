@@ -20,14 +20,30 @@ class App extends React.Component {
       isSAveButtonDisabled: true,
       searchName: '',
       searchRare: '',
+      searchTrunfo: false,
+      disableSearch: false,
     };
   }
 
   handleSearch = ({ target }) => {
-    const { name, value } = target;
+    const { name, type, checked } = target;
+    const value = type === 'checkbox' ? checked : target.value;
     this.setState({
       [name]: value === 'todas' ? '' : value,
+    }, () => {
+      this.setState({
+        searchName: '',
+        searchRare: '',
+        disableSearch: checked,
+      });
     });
+  }
+
+  showCards = () => {
+    const { searchTrunfo, cards, searchName, searchRare } = this.state;
+    return (searchTrunfo ? cards.filter((card) => card.cardTrunfo)
+      : cards.filter((card) => card.cardName.toLowerCase()
+        .includes(searchName.toLowerCase()) && card.cardRare.startsWith(searchRare)));
   }
 
   validateSaveButton = () => {
@@ -94,7 +110,6 @@ class App extends React.Component {
 
   render() {
     const {
-      cards,
       cardName,
       cardDescription,
       cardAttr1,
@@ -105,8 +120,8 @@ class App extends React.Component {
       cardTrunfo,
       isSAveButtonDisabled,
       hasTrunfo,
-      searchName,
-      searchRare,
+      searchTrunfo,
+      disableSearch,
     } = this.state;
     return (
       <div>
@@ -137,29 +152,31 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
-        <SearchCard handleSearch={ this.handleSearch } />
-        { cards.filter((card) => card.cardName.toLowerCase()
-          .includes(searchName.toLowerCase()) && card.cardRare.startsWith(searchRare))
-          .map((card) => (
-            <div key={ card.cardName }>
-              <Card
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-              />
-              <button
-                type="button"
-                data-testid="delete-button"
-                onClick={ () => this.removeCard(card) }
-              >
-                Excluir
-              </button>
-            </div>)) }
+        <SearchCard
+          handleSearch={ this.handleSearch }
+          disableSearch={ disableSearch }
+          searchTrunfo={ searchTrunfo }
+        />
+        { this.showCards().map((card) => (
+          <div key={ card.cardName }>
+            <Card
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+            />
+            <button
+              type="button"
+              data-testid="delete-button"
+              onClick={ () => this.removeCard(card) }
+            >
+              Excluir
+            </button>
+          </div>)) }
       </div>
     );
   }

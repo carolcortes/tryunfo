@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class SearchCard extends React.Component {
   render() {
-    const { handleSearch } = this.props;
+    const { handleSearch, disableSearch, searchTrunfo } = this.props;
     return (
       <div>
         <label htmlFor="search-name">
@@ -14,6 +14,7 @@ class SearchCard extends React.Component {
             name="searchName"
             id="search-name"
             onChange={ handleSearch }
+            disabled={ disableSearch }
           />
         </label>
         <label htmlFor="search-rare">
@@ -22,6 +23,7 @@ class SearchCard extends React.Component {
             name="searchRare"
             id="search-rare"
             onChange={ handleSearch }
+            disabled={ disableSearch }
           >
             <option value="todas">Todas</option>
             <option value="normal">Normal</option>
@@ -29,13 +31,25 @@ class SearchCard extends React.Component {
             <option value="muito raro">Muito Raro</option>
           </select>
         </label>
+        <label htmlFor="search-trunfo">
+          <input
+            data-testid="trunfo-filter"
+            type="checkbox"
+            name="searchTrunfo"
+            id="search-trunfo"
+            checked={ searchTrunfo }
+            onChange={ handleSearch }
+          />
+        </label>
       </div>
     );
   }
 }
 
 SearchCard.propTypes = {
-  handleSearch: PropTypes.func.isRequired,
-};
+  handleSearch: PropTypes.func,
+  disableSearch: PropTypes.bool,
+  searchTrunfo: PropTypes.bool,
+}.isRequired;
 
 export default SearchCard;
