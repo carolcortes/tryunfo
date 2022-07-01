@@ -3,23 +3,39 @@ import PropTypes from 'prop-types';
 
 class SearchCard extends React.Component {
   render() {
-    const { handleSearchName } = this.props;
+    const { handleSearch } = this.props;
     return (
-      <label htmlFor="search-card">
-        <input
-          data-testid="name-filter"
-          type="text"
-          name="search-card"
-          id="search-card"
-          onChange={ handleSearchName }
-        />
-      </label>
+      <div>
+        <label htmlFor="search-name">
+          Pesquisar carta:
+          <input
+            data-testid="name-filter"
+            type="text"
+            name="searchName"
+            id="search-name"
+            onChange={ handleSearch }
+          />
+        </label>
+        <label htmlFor="search-rare">
+          <select
+            data-testid="rare-filter"
+            name="searchRare"
+            id="search-rare"
+            onChange={ handleSearch }
+          >
+            <option value="todas">Todas</option>
+            <option value="normal">Normal</option>
+            <option value="raro">Raro</option>
+            <option value="muito raro">Muito Raro</option>
+          </select>
+        </label>
+      </div>
     );
   }
 }
 
 SearchCard.propTypes = {
-  handleSearchName: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired,
 };
 
 export default SearchCard;

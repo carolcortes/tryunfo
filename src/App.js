@@ -19,12 +19,14 @@ class App extends React.Component {
       hasTrunfo: false,
       isSAveButtonDisabled: true,
       searchName: '',
+      searchRare: '',
     };
   }
 
-  handleSearchName = ({ target }) => {
+  handleSearch = ({ target }) => {
+    const { name, value } = target;
     this.setState({
-      searchName: target.value,
+      [name]: value === 'todas' ? '' : value,
     });
   }
 
@@ -104,6 +106,7 @@ class App extends React.Component {
       isSAveButtonDisabled,
       hasTrunfo,
       searchName,
+      searchRare,
     } = this.state;
     return (
       <div>
@@ -134,9 +137,9 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
-        <SearchCard handleSearchName={ this.handleSearchName } />
+        <SearchCard handleSearch={ this.handleSearch } />
         { cards.filter((card) => card.cardName.toLowerCase()
-          .includes(searchName.toLowerCase()))
+          .includes(searchName.toLowerCase()) && card.cardRare.startsWith(searchRare))
           .map((card) => (
             <div key={ card.cardName }>
               <Card
