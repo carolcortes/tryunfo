@@ -2,12 +2,23 @@ import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
 import SearchCard from './components/SearchCard';
+import prisonMike from './prison-mike.png';
+import './styles/App.css';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      cards: [],
+      cards: [{
+        cardName: 'Prison Mike',
+        cardDescription: 'Prison is horrible! Stay out of it!',
+        cardAttr1: 30,
+        cardAttr2: 20,
+        cardAttr3: 60,
+        cardImage: prisonMike,
+        cardRare: 'muito raro',
+        cardTrunfo: false,
+      }],
       cardName: '',
       cardDescription: '',
       cardAttr1: 0,
@@ -119,8 +130,10 @@ class App extends React.Component {
       disableSearch,
     } = this.state;
     return (
-      <div>
-        <h1>Tryunfo</h1>
+      <div className="App">
+        <header className="header">
+          <h1>Tryunfo</h1>
+        </header>
         <div className="add-new-card">
           <Form
             cardName={ cardName }
@@ -152,26 +165,28 @@ class App extends React.Component {
           disableSearch={ disableSearch }
           searchTrunfo={ searchTrunfo }
         />
-        { this.showCards().map((card) => (
-          <div key={ card.cardName }>
-            <Card
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-            />
-            <button
-              type="button"
-              data-testid="delete-button"
-              onClick={ () => this.removeCard(card) }
-            >
-              Excluir
-            </button>
-          </div>)) }
+        <div className="search-result">
+          { this.showCards().map((card) => (
+            <div key={ card.cardName } className="search-card-container">
+              <Card
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />
+              <button
+                type="button"
+                data-testid="delete-button"
+                onClick={ () => this.removeCard(card) }
+              >
+                Excluir
+              </button>
+            </div>)) }
+        </div>
       </div>
     );
   }

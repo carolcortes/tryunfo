@@ -1,0 +1,25 @@
+.search-container {
+  margin-top: 40px;
+  min-height: 80px;
+}
+
+.search-container h1 {
+  background: rgb(133, 132, 132);
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  text-shadow: 2px 2px 4px black;
+}
+
+.search-options {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.tryunfo-search {
+  font-size: 15px;
+  font-weight: 500;
+  margin-right: 10px;
+}

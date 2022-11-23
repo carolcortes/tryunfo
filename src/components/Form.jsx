@@ -20,11 +20,11 @@ class Form extends React.Component {
     } = this.props;
 
     return (
-      <div className="form">
-        <h1 className="form-title">Adicionar nova carta</h1>
-        <form onSubmit={ onSaveButtonClick }>
-          <label htmlFor="cardName">
-            Nome
+      <div className="form-container">
+        <h1 className="form-title">ADICIONAR NOVA CARTA</h1>
+        <form onSubmit={ onSaveButtonClick } className="form">
+          <label htmlFor="cardName" className="cardName">
+            <span>Nome</span>
             <input
               type="text"
               data-testid="name-input"
@@ -35,19 +35,20 @@ class Form extends React.Component {
             />
           </label>
           <label htmlFor="cardDescription">
-            Descrição
+            <span>Descrição</span>
             <textarea
               name="cardDescription"
-              cols="30"
-              rows="10"
+              cols="25"
+              rows="6"
               data-testid="description-input"
               value={ cardDescription }
               onChange={ onInputChange }
               id="cardDescription"
+              maxLength={ 165 }
             />
           </label>
           <label htmlFor="cardAttr1">
-            Attr01
+            <span>Atributo 1</span>
             <input
               type="number"
               name="cardAttr1"
@@ -60,7 +61,7 @@ class Form extends React.Component {
             />
           </label>
           <label htmlFor="cardAttr2">
-            Attr02
+            <span>Atributo 2</span>
             <input
               type="number"
               name="cardAttr2"
@@ -73,7 +74,7 @@ class Form extends React.Component {
             />
           </label>
           <label htmlFor="cardAttr3">
-            Attr03
+            <span>Atributo 3</span>
             <input
               type="number"
               name="cardAttr3"
@@ -123,14 +124,16 @@ class Form extends React.Component {
                   id="cardTrunfo"
                 />
               </label>)}
-          <button
-            type="button"
-            data-testid="save-button"
-            disabled={ isSaveButtonDisabled }
-            onClick={ onSaveButtonClick }
-          >
-            Salvar
-          </button>
+          <div className="form-button">
+            <button
+              type="button"
+              data-testid="save-button"
+              disabled={ isSaveButtonDisabled }
+              onClick={ onSaveButtonClick }
+            >
+              Salvar
+            </button>
+          </div>
         </form>
       </div>
     );

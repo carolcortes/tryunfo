@@ -1,0 +1,44 @@
+* {
+  font-family: 'Montserrat', 'Arial', 'Helvetica';
+  margin: 0;
+}
+
+.header {
+  align-items: center;
+  background: rgb(133, 132, 132);
+  color: white;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  text-align: center;
+  text-shadow: 2px 2px 4px black;
+}
+
+.add-new-card {
+  align-items: center;
+  display: flex;
+  gap: 45px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.search-result {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin: 2px 100px 25px;
+  min-height: 478px;
+}
+
+.search-card-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.search-card-container button {
+  margin-top: 2px;
+  padding: 2px 15px;
+  width: fit-content;
+}
